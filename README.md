@@ -33,11 +33,11 @@ The first few colums contain general info about the feature extraction (prefixed
 
 Afterwards follow the colums for each feature. The feature column names follow this pattern: 
 
-**[pre-filter]\_[feature group]\_[feature name]**
+*[pre-filter]\_[feature group]\_[feature name]*
 
 For example:
-original\_shape\_Volume
-wavelet-HH\_glcm\_JointEnergy
+* original\_shape\_Volume
+* wavelet-HH\_glcm\_JointEnergy
 
 At the end we added a few colums with additional meta information:
 
@@ -47,6 +47,25 @@ At the end we added a few colums with additional meta information:
 | series	                 | Identifying the series this image belongs to |
 | canonicalType	           | Type/modality of the image (e.g. ADC, T2w, SUB) |
 | segmentedStructure	     | Type of structure segmented by the mask |
+
+#### Filename Pattern Description
+
+The filenames of the feature data CSVs also contain some additional meta information about their content. The jupyter notebook for genearting figures will parse this information and save it with the statistics it creates from the feature data (so you don't really have to worry about these to much).
+
+The following table explains the different "codes" in the filename of a feature CSV file:
+
+| File name contains       | Meaning |
+|--------------------------|---------|
+| FullStudySettings	       | Simply indicates that the extraction settings were according to this study (we also did smaller studies) |
+| noNormalization          | Indicates that the default pyradiomics whole-image normalization was deactivated |
+| 2d/3D 	                 | Indicates if texture features were computed in 2D or 3D |
+| biasCorrected	           | Indicates that we applied bias correction to the T2w images before processing them with pyradiomics |
+| TP2Registered	           | Indicates that for the T2w images we didn't use the first manual segmentation but used registration to transfer the second timepoint masks to the first timepoint (see paper for more info) |
+| MuscleRefNorm            | Indicates that we normalized the T2w images against a consistent reference region in muscle tissue |
+| T2AX                     | Contains only results for T2w images |
+| bin10/bin15/bin20/bin40  | Bin size used for texture feature computation |
+
+
 
 
 ## Jupyter Notebooks
