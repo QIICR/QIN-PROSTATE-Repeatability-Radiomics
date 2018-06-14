@@ -41,7 +41,7 @@ wavelet-HH\_glcm\_JointEnergy
 
 At the end we added a few colums with additional meta information:
 
-| Column Name (w/o prefix) | Meaning |
+| Column Name              | Meaning |
 |--------------------------|---------|
 | study	                   | Identifying the study this image belongs to |
 | series	                 | Identifying the series this image belongs to |
