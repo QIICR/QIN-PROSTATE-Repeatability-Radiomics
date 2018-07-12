@@ -1,0 +1,101 @@
+# #############################  Extracted using PyRadiomics version: <version>  ######################################
+
+imageType:
+  Original: {}
+  LoG:
+    # If you include sigma values >5, remember to also increase the padDistance. Because of resampling to (2, 2, 2), the
+    # use of sigmas < 2 mm is not recommended.
+    sigma: [2.0, 3.0, 4.0, 5.0]
+  Wavelet: {}
+  Square: {}
+  SquareRoot: {}
+  Logarithm: {}
+  Exponential: {}
+
+
+featureClass:
+  shape:  # disable redundant Compactness 1 and Compactness 2 features by specifying all other shape features, also disabling Flatness and LeastAxis since they yield errors on some masks (I think those only defined on 1 slice)
+    - 'Volume'
+    - 'SurfaceArea'
+    - 'SurfaceVolumeRatio'
+    - 'Sphericity'
+    - 'Maximum3DDiameter'
+    - 'Maximum2DDiameterSlice'
+    - 'Maximum2DDiameterColumn'
+    - 'Maximum2DDiameterRow'
+    - 'MajorAxis'
+    - 'MinorAxis'
+    - 'Elongation'
+  firstorder:
+  glcm:  # Disable SumAverage by specifying all other GLCM features available
+    - 'Autocorrelation'
+    - 'JointAverage'
+    - 'ClusterProminence'
+    - 'ClusterShade'
+    - 'ClusterTendency'
+    - 'Contrast'
+    - 'Correlation'
+    - 'DifferenceAverage'
+    - 'DifferenceEntropy'
+    - 'DifferenceVariance'
+    - 'JointEnergy'
+    - 'JointEntropy'
+    - 'Imc1'
+    - 'Imc2'
+    - 'Idm'
+    - 'Idmn'
+    - 'Id'
+    - 'Idn'
+    - 'InverseVariance'
+    - 'MaximumProbability'
+    - 'SumEntropy'
+    - 'SumSquares'
+  glrlm:
+  glszm:
+
+
+setting:
+  # Normalization:
+  # MR signal is usually relative, with large differences between scanners and vendors. By normalizing the image before
+  # feature calculation, this confounding effect may be reduced. However, if only one specific scanner is used, or the
+  # images reflect some absolute world value (e.g. ADC maps, T2maps (NOT T2 weighted)), consider disabling the
+  # normalization.
+  #normalize: true
+  #normalizeScale: 100  # This allows you to use more or less the same bin width.
+
+  # Resampling:
+  # If slices are very thin (~1mm), such as in 3D scanned (isotropic) volumes, resampledPixelSpacing may be reduced to
+  # (1, 1, 1). Furthermore, in case of isotropic volumes, consider disabling resampling.
+  # On a side note: increasing the resampled spacing forces PyRadiomics to look at more coarse textures, which may or
+  # may not increase accuracy and stability of your extracted features.
+  interpolator: 'sitkBSpline'
+  resampledPixelSpacing: #[2, 2, 2]
+
+  # Mask validation:
+  # correctMask and geometryTolerance are not needed, as both image and mask are resampled, if you expect very small
+  # masks, consider to enable a size constraint by uncommenting settings below:
+  #minimumROIDimensions: 2
+  #minimumROISize: 50
+
+  # Image discretization:
+  # The ideal number of bins is somewhere in the order of 16-128 bins. A possible way to define a good binwidt is to
+  # extract firstorder:Range from the dataset to analyze, and choose a binwidth so, that range/binwidth remains approximately
+  # in this range of bins.
+  binWidth: 20
+
+  # first order specific settings:
+  # When normalizing, gray values below the mean will be negative. Shifting by 300 (3 StdDevs * 100) ensures that the
+  # majority of voxels is positive (only outliers >3 SD lower than the mean will be negative).
+  #voxelArrayShift: 300
+  
+  # 2D Extraction on axial planes for texture calculations:
+  # Since we don't resample our image and the z dimension is considerably larger than x and y, it does not make sense
+  # to compute 3D texture features
+  force2D: true
+  force2Ddimension: 0
+  
+  preCrop: true
+  padDistance: 11
+  
+  
+
