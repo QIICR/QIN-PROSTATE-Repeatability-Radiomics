@@ -12,9 +12,9 @@ The _EvalData_ folder contains all extracted features we used in the study.
 
 #### File Format Description
 
-The files are in CSV format. Each row contains all features extracted for one image and mask combination. The organizatin and naming of the columns is directly taken from [pyradiomics](https://github.com/Radiomics/pyradiomics). We just added a few columns containing some additional meta information about the image/mask from which the features were derived. 
+The files are in CSV format. Each row contains all features extracted for one image and mask combination. The organization and naming of the columns is directly taken from [pyradiomics](https://github.com/Radiomics/pyradiomics). We just added a few columns containing some additional meta information about the image/mask from which the features were derived. 
 
-The first few colums contain general info about the feature extraction (prefixed with "general_info"):
+The first few columns contain general info about the feature extraction (prefixed with "general_info"):
 
 | Column Name (w/o prefix) | Meaning |
 |--------------------------|---------|
@@ -31,7 +31,7 @@ The first few colums contain general info about the feature extraction (prefixed
 | VolumeNum	               | Number of zones (connected components) within the mask for the specified label |
 | VoxelNum                 | Number of voxels in the mask |
 
-Afterwards follow the colums for each feature. The feature column names follow this pattern: 
+Afterwards follow the columns for each feature. The feature column names follow this pattern: 
 
 *[pre-filter]\_[feature group]\_[feature name]*
 
@@ -39,7 +39,7 @@ For example:
 * original\_shape\_Volume
 * wavelet-HH\_glcm\_JointEnergy
 
-At the end we added a few colums with additional meta information:
+At the end we added a few columns with additional meta information:
 
 | Column Name              | Meaning |
 |--------------------------|---------|
@@ -50,7 +50,7 @@ At the end we added a few colums with additional meta information:
 
 #### Filename Pattern Description
 
-The filenames of the feature data CSVs also contain some additional meta information about their content. The jupyter notebook for genearting figures will parse this information and save it with the statistics it creates from the feature data (so you don't really have to worry about these to much).
+The filenames of the feature data CSVs also contain some additional meta information about their content. The jupyter notebook for generating figures will parse this information and save it with the statistics it creates from the feature data (so you don't really have to worry about these to much).
 
 The following table explains the different "codes" in the filename of a feature CSV file:
 
