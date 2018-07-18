@@ -74,7 +74,7 @@ The jupyter notebooks require Python >= 3.6.
 
 ### Figure generation and data analysis
 
-The _FullStudy_RepeatabilityStudy.ipynb_ contains the code that was used to generate the figures for the pre-print paper [TBA link]. It also contains additional figures and can be used as a good basis to further analyze the data and create your own additional figures. 
+The _FullStudy_RepeatabilityStudy.ipynb_ contains the code that was used to generate the figures for the [pre-print paper](http://arxiv.org/abs/1807.06089). It also contains additional figures and can be used as a good basis to further analyze the data and create your own additional figures. 
 
 This notebook should run out-of-the-box, if you have the whole repository cloned and all Python dependencies installed (see imports in notebook). The generated figures will be saved into the _EvalData/plots_ folder.
 
