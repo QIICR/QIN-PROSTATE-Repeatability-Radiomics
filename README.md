@@ -1,8 +1,8 @@
 # Repeatability of Multiparametric Prostate MRI Radiomics Features
 
-This repository contains data and code accompanying our publication(s) on "Repeatability of Multiparametric Prostate MRI Radiomics Features"
+This repository contains data and code accompanying our publication on "Repeatability of Multiparametric Prostate MRI Radiomics Features"
 
-[TBA links to paper(s)]
+http://arxiv.org/abs/1807.06089
 
 ## Data
 
