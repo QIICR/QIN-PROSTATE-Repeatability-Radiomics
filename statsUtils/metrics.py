@@ -1,5 +1,6 @@
 from collections import namedtuple
 import numpy as np
+import scipy.stats
 
 
 def getMetrics(data1, data2):
@@ -36,6 +37,7 @@ def getMetrics(data1, data2):
 
   iccMetrics = IccMetrics(data1, data2)
   icc = iccMetrics.getIcc()
+  iccConfIntLow, iccConfIntUp = iccMetrics.getConfidenceInterval(0.05)
   bms = iccMetrics._getBms()
   wms = iccMetrics._getWms()
   
@@ -54,6 +56,8 @@ def getMetrics(data1, data2):
   metrics["stdOfAbsDiff"] = stdOfAbsDiff
   metrics["stdOfAbsDiffPercent"] = stdOfAbsDiffPercent
   metrics["icc"] = icc
+  metrics["iccConfIntLow"] = iccConfIntLow
+  metrics["iccConfIntUp"] = iccConfIntUp
   metrics["bms"] = bms
   metrics["wms"] = wms
   return metrics
@@ -62,6 +66,8 @@ def getMetrics(data1, data2):
 
 class IccMetrics(object):
   """ Compute ICC metrics based on two-timepoint repeated measeruments.
+  
+      Only computing ICC(1,1) and hence assuming One-Way Random Effects Model
 
   Args:
     data1: List of feature values for timepoint 1.
@@ -96,7 +102,18 @@ class IccMetrics(object):
     return np.sum(np.square(self.data1 - self.pairwiseMean) + np.square(self.data2 - self.pairwiseMean)) / (2 * self.n)
 
 
-
+  def getConfidenceInterval(self, alpha):
+      df1 = self.n # df1 = (N - b)(K - 1) with b = 0 for one-way REM and K = 2 in our case (2 "raters" i.e. measurements)
+      df2 = self.n - 1
+      BMS = self._getBms()
+      WMS = self._getWms()
+      F0 = BMS/WMS
+      FU = F0 * scipy.stats.f.ppf(1 - (alpha / 2), df1, df2)
+      FL = F0 * scipy.stats.f.ppf((alpha / 2), df1, df2)
+      ciLow = (FL - 1) / (FL + 1) # (FL - 1) / (FL + K - 1)
+      ciUp  = (FU - 1) / (FU + 1) # (FU - 1) / (FU + K - 1)
+      return ciLow, ciUp
+      
 
 
 

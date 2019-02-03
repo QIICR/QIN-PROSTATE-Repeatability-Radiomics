@@ -26,6 +26,8 @@ class TestMetrics(unittest.TestCase):
     self.assertEqual(m["stdOfAbsDiff"], 0)
     self.assertEqual(m["stdOfAbsDiffPercent"], 0)
     self.assertEqual(m["icc"], -1)
+    self.assertEqual(m["iccConfIntLow"], -1.0)
+    self.assertEqual(m["iccConfIntUp"], -1.0)
     self.assertEqual(m["bms"], 0)
     self.assertEqual(m["wms"], 0.25)
 
@@ -42,6 +44,8 @@ class TestMetrics(unittest.TestCase):
     self.assertEqual(m["stdOfAbsDiff"], 0)
     self.assertEqual(m["stdOfAbsDiffPercent"], 0)
     self.assertEqual(m["icc"], 1)
+    self.assertTrue(np.isnan(m["iccConfIntLow"]))
+    self.assertTrue(np.isnan(m["iccConfIntUp"]))
     self.assertEqual(m["bms"], 0.5)
     self.assertEqual(m["wms"], 0)
 
@@ -58,8 +62,16 @@ class TestMetrics(unittest.TestCase):
     self.assertEqual(m["stdOfAbsDiff"], 0)
     self.assertTrue(np.isnan(m["stdOfAbsDiffPercent"]))
     self.assertTrue(np.isnan(m["icc"]))
+    self.assertTrue(np.isnan(m["iccConfIntLow"]))
+    self.assertTrue(np.isnan(m["iccConfIntUp"]))
     self.assertEqual(m["bms"], 0)
     self.assertEqual(m["wms"], 0)
+
+  def test_iccConfidenceIntervals(self):
+    m = sm.getMetrics([1, 2, 3], [2, 1, 3])
+    self.assertAlmostEqual(m["iccConfIntLow"], -0.5619181573565938)
+    self.assertAlmostEqual(m["iccConfIntUp"], 0.988716166340473)
+
 
 
 if __name__ == "__main__":
