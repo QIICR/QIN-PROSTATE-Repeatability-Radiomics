@@ -37,7 +37,7 @@ def getMetrics(data1, data2):
 
   iccMetrics = IccMetrics(data1, data2)
   icc = iccMetrics.getIcc()
-  iccConfIntLow, iccConfIntUp = iccMetrics.getConfidenceInterval(0.05)
+  iccConfIntLow, iccConfIntUp = iccMetrics.getConfidenceInterval(0.1)
   bms = iccMetrics._getBms()
   wms = iccMetrics._getWms()
   

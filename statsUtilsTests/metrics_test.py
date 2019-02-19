@@ -69,8 +69,34 @@ class TestMetrics(unittest.TestCase):
 
   def test_iccConfidenceIntervals(self):
     m = sm.getMetrics([1, 2, 3], [2, 1, 3])
-    self.assertAlmostEqual(m["iccConfIntLow"], -0.5619181573565938)
-    self.assertAlmostEqual(m["iccConfIntUp"], 0.988716166340473)
+    self.assertAlmostEqual(m["iccConfIntLow"], -0.3595260832744616)
+    self.assertAlmostEqual(m["iccConfIntUp"], 0.977074556239113)
+  
+  def test_larger_datsets(self):
+    d1 = [12, 14, 16, 18, 20, 22, 24, 28, 30, 32]
+    d2 = [13, 13, 15, 17, 21, 20, 23, 27, 32, 31]
+    m = sm.getMetrics(d1, d2)
+    print("\nTimepoint 1 datapoints:", d1)
+    print("Timepoint 2 datapoints:", d2)
+    print("ICC:", m["icc"])
+    print("ICC CI [{} , {}]".format(m["iccConfIntLow"], m["iccConfIntUp"]))
+    
+    d1 = [123, 134, 132, 118, 145, 110, 119, 100, 156, 145]
+    d2 = [134, 112, 102, 119, 123, 134, 123, 114, 136, 112]
+    m = sm.getMetrics(d1, d2)
+    print("\nTimepoint 1 datapoints:", d1)
+    print("Timepoint 2 datapoints:", d2)
+    print("ICC:", m["icc"])
+    print("ICC CI [{} , {}]".format(m["iccConfIntLow"], m["iccConfIntUp"]))
+
+    d1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    d2 = [2, 3, 5, 4, 6, 7, 9, 8, 11, 10]
+    m = sm.getMetrics(d1, d2)
+    print("\nTimepoint 1 datapoints:", d1)
+    print("Timepoint 2 datapoints:", d2)
+    print("ICC:", m["icc"])
+    print("ICC CI [{} , {}]".format(m["iccConfIntLow"], m["iccConfIntUp"]))
+
 
 
 
