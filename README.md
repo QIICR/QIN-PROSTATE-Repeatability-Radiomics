@@ -4,7 +4,9 @@ This repository contains data and code accompanying our publication on "Repeatab
 
 https://www.nature.com/articles/s41598-019-45766-z
 
-**NOTE** Some specific adaptions for the figure generations have been done for revised submission to Scientific Reports. 
+Preprint: https://arxiv.org/abs/1807.06089
+
+**NOTE** Some specific adaptions for the figure generations have been done for the Nature Scientific Reports version. 
 You can find these in the "ScientificReportsRevision*" branches.
 
 ## Data
