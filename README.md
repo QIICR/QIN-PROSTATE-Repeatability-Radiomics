@@ -2,7 +2,7 @@
 
 This repository contains data and code accompanying our publication on "Repeatability of Multiparametric Prostate MRI Radiomics Features"
 
-http://arxiv.org/abs/1807.06089
+https://www.nature.com/articles/s41598-019-45766-z
 
 **NOTE** Some specific adaptions for the figure generations have been done for revised submission to Scientific Reports. 
 You can find these in the "ScientificReportsRevision*" branches.
