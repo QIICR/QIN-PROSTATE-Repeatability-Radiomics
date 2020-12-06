@@ -2,7 +2,7 @@
 
 This repository contains data and code accompanying our publication on "Repeatability of Multiparametric Prostate MRI Radiomics Features"
 
-https://www.nature.com/articles/s41598-019-45766-z
+> Schwier, M., van Griethuysen, J., Vangel, M. G., Pieper, S., Peled, S., Tempany, C., Aerts, H. J. W. L., Kikinis, R., Fennessy, F. M. & Fedorov, A. Repeatability of Multiparametric Prostate MRI Radiomics Features. Sci. Rep. 9, 9441 (2019). https://www.nature.com/articles/s41598-019-45766-z
 
 Preprint: https://arxiv.org/abs/1807.06089
 
